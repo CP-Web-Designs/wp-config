@@ -99,6 +99,7 @@ switch ( WP_ENVIRONMENT_TYPE ) {
         define( 'DB_PASSWORD', 'my-database-passwd' );
         define( 'DOMAIN_CURRENT_SITE', 'production-multisite-root-domain' );
         define( 'SCRIPT_DEBUG', false );
+	define( 'SITEGROUND', true );					// FOR SITEGROUND MANAGED HOSTING
         define( 'SMTP_DEBUG', 0 );                                      // DO NOT DEBUG SMTP
         define( 'WP_CACHE', true );
         define( 'WP_DEBUG', false );
@@ -143,3 +144,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
+
+if( defined( 'SITEGROUND' ) && SITEGROUND ):
+	@include_once('/var/lib/sec/wp-settings.php'); // Added by SiteGround WordPress management system
+endif;
